@@ -3,45 +3,28 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class Square extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      value: null,
+    };
+  }
   render() {
     return (
-      <button className="square" onClick={() => this.props.onClick()}>
-        {this.props.value}
+      <button className="square" onClick={() => alert('click')}>
+      {this.props.value}
       </button>
     );
   }
 }
 
 class Board extends React.Component {
-  constructor(){
-    super();
-    this.state = {
-      squares: Array(9).fill(null),
-
-    };
-  }
-
-  handleClick(i) {
-    const squares = this.state.squares.slice();
-    squares[i] = 'X';
-    this.setState({squares: squares});
-  }
-
-
   renderSquare(i) {
-    return (
-     <Square
-      value={this.state.squares[i]}
-      onClick={() => this.handleClick(i)}
-      />
-      );
-
+    return <Square />;
   }
 
   render() {
-
-    const status = 'Next player:   X';
-
+    const status = 'Next player: X';
 
     return (
       <div>
@@ -65,23 +48,8 @@ class Board extends React.Component {
     );
   }
 }
-[
-  '0', null, 'x',
-  'x', 'x', '0',
-  '0', null, null
-]
-
 
 class Game extends React.Component {
-  constructor(){
-    super();
-    this.state = {
-      history: [{
-        squares: Array(9).fill(null),
-      }],
-      xIsNext: true,
-    };
-  }
   render() {
     return (
       <div className="game">
@@ -97,13 +65,11 @@ class Game extends React.Component {
   }
 }
 
-
-
-
 // ========================================
 
 ReactDOM.render(
   <Game />,
   document.getElementById('root')
 );
+
 
